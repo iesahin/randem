@@ -1,7 +1,7 @@
 use clap::Parser;
 use emoji::{self, Emoji};
 use rand::seq::IteratorRandom;
-use rand::{Rng, SeedableRng};
+use rand::SeedableRng;
 use std::collections::hash_map::DefaultHasher;
 use std::hash::{Hash, Hasher};
 
