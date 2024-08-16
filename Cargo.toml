@@ -2,6 +2,9 @@
 name = "randem"
 version = "0.1.0"
 edition = "2021"
+description = "Print a random emoji optionally with the given string as seed"
+license = "MIT"
+homepage = "https://github.com/iesahin/randem"
 
 [dependencies]
 
