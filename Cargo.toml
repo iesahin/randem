@@ -1,10 +1,19 @@
 [package]
 name = "randem"
-version = "0.1.0"
+version = "0.1.1"
 edition = "2021"
 description = "Print a random emoji optionally with the given string as seed"
 license = "MIT"
 homepage = "https://github.com/iesahin/randem"
+
+[lib]
+name = "randem"
+path = "src/lib.rs"
+crate-type = ["lib"]
+
+[[bin]]
+name = "randem"
+path = "src/main.rs"
 
 [dependencies]
 

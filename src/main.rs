@@ -1,34 +1,22 @@
 use clap::Parser;
-use emoji::{self, Emoji};
-use rand::seq::IteratorRandom;
-use rand::SeedableRng;
-use std::collections::hash_map::DefaultHasher;
-use std::hash::{Hash, Hasher};
+use randem::randem;
 
 #[derive(Parser)]
 #[command(name = "randem", author)]
 struct RandemCLI {
     #[arg(short, long)]
     seed: Option<String>,
-}
-
-fn hash_string(s: &str) -> u64 {
-    let mut hasher = DefaultHasher::new();
-    s.hash(&mut hasher);
-    hasher.finish()
+    #[arg(short, long)]
+    include_group: Option<String>,
+    #[arg(short, long)]
+    exclude_group: Option<String>,
 }
 
 fn main() {
     let parsed = RandemCLI::parse();
 
-    let mut rng = if let Some(seed) = parsed.seed {
-        let hashed = hash_string(&seed);
-        rand::rngs::StdRng::seed_from_u64(hashed)
-    } else {
-        rand::rngs::StdRng::from_entropy()
-    };
-
-    let all_emoji: Vec<&Emoji> = emoji::lookup_by_name::iter_emoji().collect();
-    let random_emoji = all_emoji.into_iter().choose(&mut rng).unwrap();
-    println!("{}", random_emoji.glyph);
+    println!(
+        "{}",
+        randem(parsed.seed, parsed.include_group, parsed.exclude_group)
+    );
 }
