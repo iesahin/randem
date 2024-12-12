@@ -28,8 +28,10 @@ pub fn randem(
     let emoji_filter = |e: &Emoji| {
         if let Some(include_group) = &include_group {
             e.group.to_lowercase().contains(include_group)
+                || e.name.to_lowercase().contains(include_group)
         } else if let Some(exclude_group) = &exclude_group {
-            !e.group.to_lowercase().contains(exclude_group)
+            !(e.group.to_lowercase().contains(exclude_group)
+                || e.name.to_lowercase().contains(exclude_group))
         } else {
             true
         }
